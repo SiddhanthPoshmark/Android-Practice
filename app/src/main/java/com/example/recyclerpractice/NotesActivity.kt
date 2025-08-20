@@ -45,7 +45,6 @@ class NotesActivity : AppCompatActivity() {
 
         val editNote = findViewById<EditText>(R.id.editNote)
         val buttonAdd = findViewById<Button>(R.id.addButton)
-
         buttonAdd.setOnClickListener {
             val note = editNote.text.toString()
             if (note.isNotEmpty()) {
