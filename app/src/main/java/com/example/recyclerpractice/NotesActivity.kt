@@ -3,6 +3,7 @@ package com.example.recyclerpractice
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -50,6 +51,9 @@ class NotesActivity : AppCompatActivity() {
             if (note.isNotEmpty()) {
                 viewModel.insert(note)
                 editNote.text.clear()
+            }
+            else {
+                Toast.makeText(this, "Note cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
         var lastListSize = 0
