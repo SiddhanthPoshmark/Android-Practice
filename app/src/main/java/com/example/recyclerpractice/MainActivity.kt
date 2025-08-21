@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         adapter = MessageAdapter()
         recyclerView.adapter = adapter
 
-
         for(i in 1 .. 50) {
             Log.d("Hello12", "mainactivity, List Updated")
             messages.add(Message.ImageItem(id = i * 2 - 1, imageResId = android.R.drawable.btn_star_big_on))
@@ -36,8 +35,10 @@ class MainActivity : AppCompatActivity() {
         adapter.submitList(messages)
 
         findViewById<Button>(R.id.btnGoNext).setOnClickListener {
-            val intent = Intent(this, NotesActivity::class.java)
-            startActivity(intent)
+            supportFragmentManager.beginTransaction()
+                .replace(android.R.id.content, NotesFragment())
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

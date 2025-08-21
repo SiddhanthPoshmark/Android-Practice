@@ -1,10 +1,13 @@
 package com.example.recyclerpractice
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerpractice.db.NoteDatabase
 import kotlinx.coroutines.launch
 
-class NotesActivity : AppCompatActivity() {
+class NotesFragment : Fragment() {
 
     private lateinit var adapter: NotesAdapter
     private lateinit var viewModel: NoteViewModel
@@ -28,10 +31,14 @@ class NotesActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notes)
-        val db = NoteDatabase.getDatabase(this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_notes, container, false)
+
+        val db = NoteDatabase.getDatabase(requireContext())
         val repository = NotesRepository(db.noteDao())
         viewModel = ViewModelProvider(this, NotesViewModelFactory(repository))[NoteViewModel::class.java]
 
@@ -39,20 +46,19 @@ class NotesActivity : AppCompatActivity() {
             viewModel.incrementCount(note.id)
         }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        val editNote = findViewById<EditText>(R.id.editNote)
-        val buttonAdd = findViewById<Button>(R.id.addButton)
+        val editNote = view.findViewById<EditText>(R.id.editNote)
+        val buttonAdd = view.findViewById<Button>(R.id.addButton)
         buttonAdd.setOnClickListener {
             val note = editNote.text.toString()
             if (note.isNotEmpty()) {
                 viewModel.insert(note)
                 editNote.text.clear()
-            }
-            else {
-                Toast.makeText(this, "Note cannot be empty", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -69,6 +75,7 @@ class NotesActivity : AppCompatActivity() {
                 }
             }
         }
+
+        return view
     }
 }
-

@@ -22,7 +22,6 @@ class NotesAdapter(
         }
     }
 
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -40,7 +39,6 @@ class NotesAdapter(
         }
     }
 }
-
 
 class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textView: TextView = itemView.findViewById(R.id.note_message)
