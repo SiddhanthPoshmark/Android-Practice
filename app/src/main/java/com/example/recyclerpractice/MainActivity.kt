@@ -35,9 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnGoNext).setOnClickListener {
             supportFragmentManager.beginTransaction()
-                .replace(android.R.id.content, NotesFragment())
+                .add(android.R.id.content, NotesFragment())
                 .addToBackStack(null)
                 .commit()
         }
     }
 }
+
+// Fragment lifecycle,
+//Memory Leaks and fixing memory leaks.
+// StateFlow, SharedFlow, Channels, Flows presentation when to use them, simple functions,
+//MVI application, add CLean Architecture

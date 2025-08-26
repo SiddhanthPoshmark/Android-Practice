@@ -63,6 +63,14 @@ class NotesFragment : Fragment() {
             }
         }
 
+        val openDetailButton = view.findViewById<Button>(R.id.openNewFragment)
+        openDetailButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(android.R.id.content, NewFragment())
+                .addToBackStack(null) // so back button comes back here
+                .commit()
+        }
+
         return view
     }
 }
