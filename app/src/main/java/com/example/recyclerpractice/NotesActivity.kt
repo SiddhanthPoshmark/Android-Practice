@@ -4,36 +4,23 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recyclerpractice.db.NoteDatabase
 import kotlinx.coroutines.launch
 
 class NotesActivity : AppCompatActivity() {
 
     private lateinit var adapter: NotesAdapter
-    private lateinit var viewModel: NoteViewModel
+    private val viewModel: NoteViewModel by viewModels()
 
-    class NotesViewModelFactory(private val repository: NotesRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return NoteViewModel(repository) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
-        val db = NoteDatabase.getDatabase(this)
-        val repository = NotesRepository(db.noteDao())
-        viewModel = ViewModelProvider(this, NotesViewModelFactory(repository))[NoteViewModel::class.java]
+
 
         adapter = NotesAdapter { note ->
             viewModel.incrementCount(note.id)

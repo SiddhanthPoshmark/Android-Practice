@@ -1,35 +1,24 @@
 package com.example.recyclerpractice
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recyclerpractice.db.NoteDatabase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class NotesFragment : Fragment() {
 
     private lateinit var adapter: NotesAdapter
-    private lateinit var viewModel: NoteViewModel
-
-    class NotesViewModelFactory(private val repository: NotesRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return NoteViewModel(repository) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,9 +27,7 @@ class NotesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_notes, container, false)
 
-        val db = NoteDatabase.getDatabase(requireContext())
-        val repository = NotesRepository(db.noteDao())
-        viewModel = ViewModelProvider(this, NotesViewModelFactory(repository))[NoteViewModel::class.java]
+        val viewModel: NoteViewModel by viewModels()
 
         adapter = NotesAdapter { note ->
             viewModel.incrementCount(note.id)

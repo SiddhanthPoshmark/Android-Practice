@@ -3,10 +3,13 @@ package com.example.recyclerpractice
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recyclerpractice.db.NoteEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NoteViewModel(private val repo: NotesRepository): ViewModel() {
+@HiltViewModel
+class NoteViewModel @Inject constructor(private val repo: NotesRepository): ViewModel() {
 
     val allNotes: Flow<List<NoteEntity>> = repo.allMessages
     fun insert(note : String) {

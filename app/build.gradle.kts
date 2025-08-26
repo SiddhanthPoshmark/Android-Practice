@@ -1,8 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
+
+hilt { enableAggregatingTask = false }
 
 android {
     namespace = "com.example.recyclerpractice"
@@ -37,14 +40,16 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.fragment)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.material)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
