@@ -6,15 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerpractice.R
+import com.example.recyclerpractice.databinding.FragmentNotesBinding
 import com.example.recyclerpractice.presentation.newFragment.NewFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,6 +21,9 @@ import kotlinx.coroutines.launch
 class NotesFragment : Fragment() {
 
     private lateinit var adapter: NotesAdapter
+    private var _binding: FragmentNotesBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("Hello123", "NotesFragment OnCreate")
@@ -79,7 +80,7 @@ class NotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d("Hello123","NotesFragment onCreateView")
-        val view = inflater.inflate(R.layout.fragment_notes, container, false)
+        _binding = FragmentNotesBinding.inflate(inflater, container, false)
 
         val viewModel: NoteViewModel by viewModels()
 
@@ -87,12 +88,12 @@ class NotesFragment : Fragment() {
             viewModel.incrementCount(note.id)
         }
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        val editNote = view.findViewById<EditText>(R.id.editNote)
-        val buttonAdd = view.findViewById<Button>(R.id.addButton)
+        val editNote = binding.editNote
+        val buttonAdd = binding.addButton
         buttonAdd.setOnClickListener {
             val note = editNote.text.toString()
             if (note.isNotEmpty()) {
@@ -117,14 +118,13 @@ class NotesFragment : Fragment() {
             }
         }
 
-        val openDetailButton = view.findViewById<Button>(R.id.openNewFragment)
-        openDetailButton.setOnClickListener {
+            binding.openNewFragment.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main_container, NewFragment())
                 .addToBackStack(null)
                 .commit()
         }
 
-        return view
+        return binding.root
     }
 }

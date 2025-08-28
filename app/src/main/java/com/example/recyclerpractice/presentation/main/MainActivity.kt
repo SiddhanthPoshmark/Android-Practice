@@ -1,22 +1,24 @@
 package com.example.recyclerpractice.presentation.main
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.recyclerpractice.presentation.notes.NotesFragment
 import com.example.recyclerpractice.R
+import com.example.recyclerpractice.databinding.ActivityMainBinding
+import com.example.recyclerpractice.presentation.notes.NotesFragment
 import dagger.hilt.android.AndroidEntryPoint
-
-private lateinit var adapter: MessageAdapter
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: MessageAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val recyclerView = findViewById<RecyclerView>(R.id.message_list)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val recyclerView = binding.messageList
         val messages = mutableListOf<Message>()
 
         val gridLayoutManager = GridLayoutManager(this, 2)
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
         adapter.submitList(messages)
 
-        findViewById<Button>(R.id.btnGoNext).setOnClickListener {
+        binding.btnGoNext.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .add(R.id.main_container, NotesFragment())
                 .addToBackStack(null)

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.recyclerpractice.R
+import com.example.recyclerpractice.databinding.FragmentNewBinding
 
 object MessageManager {
     private val listeners = mutableListOf<() -> Unit>()
@@ -24,7 +24,8 @@ class NewFragment : Fragment() {
     private val listener: () -> Unit = {
         Log.d("Hello123", "Listener called! $this")
     }
-
+    private var _binding: FragmentNewBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("Hello123", "NewFragment OnCreate")
@@ -83,6 +84,7 @@ class NewFragment : Fragment() {
         Log.d("Hello123", "NewFragment onCreateView")
 
         MessageManager.registerListener(listener)
-        return inflater.inflate(R.layout.fragment_new, container, false)
+        _binding = FragmentNewBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
