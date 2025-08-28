@@ -74,6 +74,7 @@ class NewFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d("Hello123", "NewFragment onDestroyView")
+        _binding = null
         MessageManager.unregisterListener(listener)
     }
 

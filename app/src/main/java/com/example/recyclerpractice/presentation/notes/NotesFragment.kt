@@ -71,6 +71,7 @@ class NotesFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
         Log.d("Hello123", "NotesFragment onDestroyView")
     }
 
