@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    debugImplementation(libs.leakcanary.android)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.fragment)

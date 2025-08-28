@@ -1,4 +1,4 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.presentation.notes
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +7,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recyclerpractice.db.NoteEntity
+import com.example.recyclerpractice.R
+import com.example.recyclerpractice.data.local.Note
 
 class NotesAdapter(
-    private val onNoteClick: (NoteEntity) -> Unit
-): ListAdapter<NoteEntity, NoteViewHolder>(DiffCallback()) {
-    class DiffCallback : DiffUtil.ItemCallback<NoteEntity>() {
-        override fun areItemsTheSame(oldItem: NoteEntity, newItem: NoteEntity): Boolean {
+    private val onNoteClick: (Note) -> Unit
+): ListAdapter<Note, NoteViewHolder>(DiffCallback()) {
+    class DiffCallback : DiffUtil.ItemCallback<Note>() {
+        override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: NoteEntity, newItem: NoteEntity): Boolean {
+        override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem == newItem
         }
     }

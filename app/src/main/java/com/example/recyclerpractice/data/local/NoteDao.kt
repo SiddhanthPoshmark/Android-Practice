@@ -1,4 +1,4 @@
-package com.example.recyclerpractice.db
+package com.example.recyclerpractice.data.local
 
 import androidx.room.Dao
 import androidx.room.Query
@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Upsert
-    suspend fun insert(note: NoteEntity)
+    suspend fun insert(note: Note)
 
     @Query("SELECT * FROM notes ORDER BY id DESC")
-    fun getAllNotes(): Flow<List<NoteEntity>>
+    fun getAllNotes(): Flow<List<Note>>
 
     @Query("UPDATE notes SET count = count + 1 WHERE id = :noteId")
     suspend fun incrementCount(noteId: Int)

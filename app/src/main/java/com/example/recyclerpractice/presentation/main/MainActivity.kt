@@ -1,10 +1,13 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.presentation.main
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerpractice.presentation.notes.NotesFragment
+import com.example.recyclerpractice.R
+import com.example.recyclerpractice.data.local.Message
 import dagger.hilt.android.AndroidEntryPoint
 
 private lateinit var adapter: MessageAdapter
@@ -35,14 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnGoNext).setOnClickListener {
             supportFragmentManager.beginTransaction()
-                .add(android.R.id.content, NotesFragment())
+                .add(R.id.main_container, NotesFragment())
                 .addToBackStack(null)
                 .commit()
         }
     }
 }
 
-// Fragment lifecycle,
-//Memory Leaks and fixing memory leaks.
+// Fragment lifecycle, done
+//Memory Leaks and fixing memory leaks. done
 // StateFlow, SharedFlow, Channels, Flows presentation when to use them, simple functions,
-//MVI application, add CLean Architecture
+//MVI application, add Clean Architecture
