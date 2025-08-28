@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerpractice.presentation.notes.NotesFragment
 import com.example.recyclerpractice.R
-import com.example.recyclerpractice.data.local.Message
+import com.example.recyclerpractice.presentation.main.Message
 import dagger.hilt.android.AndroidEntryPoint
 
 private lateinit var adapter: MessageAdapter

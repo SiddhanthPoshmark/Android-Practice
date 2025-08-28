@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.example.recyclerpractice.data.local.NoteDao
 import com.example.recyclerpractice.data.local.NoteDatabase
+import com.example.recyclerpractice.data.repo.NotesRepositoryImpl
 import com.example.recyclerpractice.domain.NotesRepository
 import dagger.Module
 import dagger.Provides
@@ -32,6 +33,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRepo(dao: NoteDao): NotesRepository {
-        return NotesRepository(dao)
+        return NotesRepositoryImpl(dao)
     }
 }

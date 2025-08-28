@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerpractice.R
-import com.example.recyclerpractice.data.local.Message
+import com.example.recyclerpractice.presentation.main.Message
 
 class MessageAdapter(): ListAdapter<Message, RecyclerView.ViewHolder>(MessageDiffCallback()) {
 
