@@ -1,7 +1,8 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.presentation.main
 
 import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
+import com.example.recyclerpractice.presentation.main.Message
 
 class MessageDiffCallback: DiffUtil.ItemCallback<Message>() {
     override fun areItemsTheSame(

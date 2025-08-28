@@ -1,4 +1,4 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.presentation.notes
 
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerpractice.R
 import kotlinx.coroutines.launch
 
 class NotesActivity : AppCompatActivity() {

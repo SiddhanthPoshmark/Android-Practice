@@ -1,9 +1,9 @@
-package com.example.recyclerpractice.db
+package com.example.recyclerpractice.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = [NoteEntity::class], version = 1)
+@Database(entities = [Note::class], version = 1)
 abstract class NoteDatabase: RoomDatabase() {
     abstract fun noteDao(): NoteDao
 }

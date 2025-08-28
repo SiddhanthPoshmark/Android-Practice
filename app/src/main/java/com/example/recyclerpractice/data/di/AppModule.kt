@@ -1,9 +1,11 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.data.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.recyclerpractice.db.NoteDao
-import com.example.recyclerpractice.db.NoteDatabase
+import com.example.recyclerpractice.data.local.NoteDao
+import com.example.recyclerpractice.data.local.NoteDatabase
+import com.example.recyclerpractice.data.repo.NotesRepositoryImpl
+import com.example.recyclerpractice.domain.NotesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +33,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRepo(dao: NoteDao): NotesRepository {
-        return NotesRepository(dao)
+        return NotesRepositoryImpl(dao)
     }
 }

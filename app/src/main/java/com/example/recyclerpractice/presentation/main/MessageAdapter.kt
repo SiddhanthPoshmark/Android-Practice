@@ -1,4 +1,4 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.presentation.main
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerpractice.R
+import com.example.recyclerpractice.presentation.main.Message
 
 class MessageAdapter(): ListAdapter<Message, RecyclerView.ViewHolder>(MessageDiffCallback()) {
 

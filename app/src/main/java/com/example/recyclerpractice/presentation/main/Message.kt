@@ -1,4 +1,4 @@
-package com.example.recyclerpractice
+package com.example.recyclerpractice.presentation.main
 
 sealed class Message {
     data class TextItem(val id: Int, val message: String) : Message()
