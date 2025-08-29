@@ -21,6 +21,13 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:text="Go to Notes" />
+        <Button
+            android:id="@+id/btnGoComposeActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Go to Recipe Finder" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/message_list"

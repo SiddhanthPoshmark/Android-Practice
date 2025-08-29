@@ -97,7 +97,7 @@ class NotesFragment : Fragment() {
         val buttonAdd = binding.addButton
         buttonAdd.setOnClickListener {
             val note = editNote.text.toString()
-            if (note.isNotEmpty()) {
+            if (note.isNotBlank()) {
                 viewModel.insert(note)
                 editNote.text.clear()
             } else {

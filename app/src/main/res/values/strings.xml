@@ -2,4 +2,5 @@
     <string name="app_name">RecyclerPractice</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello New fragment</string>
+    <string name="title_activity_recipe_finder">RecipeFinder</string>
 </resources>

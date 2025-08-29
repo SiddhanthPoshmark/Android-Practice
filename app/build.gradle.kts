@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "2.2.10"
 }
 
 hilt { enableAggregatingTask = false }
@@ -13,6 +15,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 
     defaultConfig {
@@ -44,8 +47,23 @@ android {
 }
 
 dependencies {
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.gson)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.leakcanary.android)
     implementation(libs.hilt.android)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.fragment)
     implementation(libs.androidx.core.ktx)

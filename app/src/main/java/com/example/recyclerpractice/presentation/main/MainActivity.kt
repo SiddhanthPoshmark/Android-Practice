@@ -1,9 +1,11 @@
 package com.example.recyclerpractice.presentation.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.recyclerpractice.R
+import com.example.recyclerpractice.presentation.recipe.RecipeFinder
 import com.example.recyclerpractice.databinding.ActivityMainBinding
 import com.example.recyclerpractice.presentation.notes.NotesFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,6 +44,11 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.main_container, NotesFragment())
                 .addToBackStack(null)
                 .commit()
+        }
+
+        binding.btnGoComposeActivity.setOnClickListener {
+            val intent = Intent(this, RecipeFinder::class.java)
+            startActivity(intent)
         }
     }
 }
