@@ -13,21 +13,30 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnGoNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="Go to Notes" />
-        <Button
-            android:id="@+id/btnGoComposeActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="Go to Recipe Finder" />
+            <Button
+                android:id="@+id/btnGoNext"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Go to Notes" />
+
+            <Button
+                android:id="@+id/btnGoComposeActivity"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_height="wrap_content"
+                android:text="Go to Recipe Finder" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/message_list"

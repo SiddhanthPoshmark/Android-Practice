@@ -126,7 +126,7 @@ fun ErrorScreen(errorMessage: String, onRefreshClick: () -> Unit) {
     ) {
         Text(
             text = errorMessage,
-            color = MaterialTheme.colorScheme.onError,
+            color = MaterialTheme.colorScheme.error,
             textAlign = TextAlign.Center
         )
         Button(onClick = onRefreshClick) {
