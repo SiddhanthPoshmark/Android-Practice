@@ -122,7 +122,6 @@ class NotesFragment : Fragment() {
             binding.openNewFragment.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main_container, NewFragment())
-                .addToBackStack(null)
                 .commit()
         }
 

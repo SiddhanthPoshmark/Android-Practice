@@ -15,8 +15,6 @@ object MealApiClient {
             json()
         }
     }
-    //
-//
     suspend fun getRandomRecipe(): List<Meal> {
         val url = "https://www.themealdb.com/api/json/v1/1/random.php"
         val response = apiClient.get(url).body() as MealResponse
